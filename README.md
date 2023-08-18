@@ -11,13 +11,13 @@ Create WHMCS addon module that sends hosting addon updates to client sites and s
 4. When addon is deleted, it should also send notification to Slack using [Slack API](https://api.slack.com/reference/messaging/attachments)
 5. Slack notifications must include client data - name & email, service / hosting details - date started, domain, lifetime value (summary of all paid invoices for this service) 
 
-#Advanced level (*optional*)
+# Advanced level (*optional*)
 1. Skip the job queue if update was initialized from the API
 2. Add a widget with statistics for tasks queue
 3. Add a button to rerun a failed task
 4. Add a submenu item for the addon in the primary sidebar menu using WHMCS\View\Menu\Item
 
-#Theory (*no code required, just explanation*)
+# Theory (*no code required, just explanation*)
 1. How you'd change/optimize the architecture of this plugin if the rate of updates for hosting addons is 100/sec? 1000/sec?
 
 ## Workflow
