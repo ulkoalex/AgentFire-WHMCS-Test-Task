@@ -4,20 +4,20 @@ Create WHMCS addon module that sends hosting addon updates to client sites and s
 - It must use job queue, don't execute any requests in runtime
 - It should allow configuration (on addon module page / addon admin page) for which hosting addons it should be active
 
-# Task details
+### Task details
 1. When hosting addon is added / changed / cancelled it should add a job to the queue (see the full hooks list in the code, also see [WHMCS Hooks Reference](https://developers.whmcs.com/hooks-reference/addon/)) 
 2. Job queue is then processed via cron, in batches respecting the time limit
 3. Each update should be sent to the client site using cURL post request to a REST endpoint (no need to develop it, just use a dummy URL), data to include - client ID, product ID, service ID, addon ID, hosting addon ID, old and new status for the hosting addon. Preferably, use corresponding server IP (from tblservers) and Host header for these requests, to avoid DNS and CDN overhead.
 4. When addon is deleted, it should also send notification to Slack using [Slack API](https://api.slack.com/reference/messaging/attachments)
 5. Slack notifications must include client data - name & email, service / hosting details - date started, domain, lifetime value (summary of all paid invoices for this service) 
 
-# Advanced level (*optional*)
+### Advanced level (*optional*)
 1. Skip the job queue if update was initialized from the API
 2. Add a widget with statistics for tasks queue
 3. Add a button to rerun a failed task
 4. Add a submenu item for the addon in the primary sidebar menu using WHMCS\View\Menu\Item
 
-# Theory (*no code required, just explanation*)
+### Theory (*no code required, just explanation*)
 1. How you'd change/optimize the architecture of this plugin if the rate of updates for hosting addons is 100/sec? 1000/sec?
 
 ## Workflow
